@@ -1,0 +1,49 @@
+---
+import { LINKS } from '../consts';
+---
+
+<section id="folder" class="border-y border-slate-200 bg-slate-50 py-14">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6">
+    <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">Folder van deze week</h2>
+    <p class="mt-2 text-slate-600">
+      Elke donderdag een nieuwe folder, geldig tot en met woensdag. Blader hieronder door de
+      actuele acties, of{' '}
+      <a href={LINKS.folder} target="_blank" rel="noopener" class="font-semibold text-red-600 hover:underline">
+        open de folder op delhaize.be
+      </a>.
+    </p>
+
+    <div
+      id="folder-slot"
+      class="relative mt-6 flex min-h-[420px] items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+      data-folder-src={LINKS.folderEmbed}
+    >
+      <button
+        type="button"
+        id="folder-consent-button"
+        class="flex flex-col items-center gap-2 px-6 py-8 text-center text-sm font-semibold text-slate-600 hover:text-red-600"
+      >
+        <span class="text-3xl" aria-hidden="true">🛍️</span>
+        Toon de folder (laadt inhoud van Delhaize / Publitas)
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const slot = document.getElementById('folder-slot');
+  const button = document.getElementById('folder-consent-button');
+
+  button?.addEventListener('click', () => {
+    if (!slot) return;
+    const src = slot.dataset.folderSrc ?? '';
+    const iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.title = 'Folder van deze week';
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    iframe.className = 'h-[600px] w-full';
+    iframe.style.border = '0';
+    slot.replaceChildren(iframe);
+  });
+</script>

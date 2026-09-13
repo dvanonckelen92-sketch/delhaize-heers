@@ -70,6 +70,9 @@ export const HOSTING = {
 export const LINKS = {
   collect: 'https://www.delhaize.be/collect',
   folder: 'https://www.delhaize.be/nl/folder',
+  // Publitas-account van Delhaize: deze URL (zonder specifieke week-slug) verwijst altijd
+  // automatisch door naar de nieuwste folder, dus deze hoeft nooit handmatig bijgewerkt te worden.
+  folderEmbed: 'https://view.publitas.com/delhaize-belgium-nl?publitas_embed=embedded',
   magazine: 'https://www.delhaize.be/nl/magazine',
   appStore: 'https://apps.apple.com/us/app/my-delhaize/id1463175036',
   playStore: 'https://play.google.com/store/apps/details?id=be.delhaize.my',
