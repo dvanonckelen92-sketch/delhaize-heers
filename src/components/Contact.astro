@@ -11,52 +11,28 @@ import { SITE, STORE, LINKS } from '../consts';
         <p>{STORE.streetAddress}</p>
         <p>{STORE.postalCode} {STORE.addressLocality}</p>
         <p class="mt-2">
-          <a href={STORE.phoneHref} class="font-semibold text-red-600 hover:underline">{STORE.phone}</a>
+          <a href={STORE.phoneHref} class="font-semibold text-brand-600 hover:underline">{STORE.phone}</a>
         </p>
       </address>
       <a
         href={LINKS.route}
         target="_blank"
         rel="noopener"
-        class="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-red-600 px-6 py-3 text-sm font-semibold text-white hover:bg-red-700"
+        class="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700"
       >
         Bereken je route
       </a>
     </div>
 
-    <div
-      id="map-slot"
-      class="relative flex min-h-72 items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-sm md:min-h-full"
-      data-map-src={LINKS.mapsEmbed}
-      data-map-title={`Kaart met de locatie van ${SITE.name}`}
-    >
-      <button
-        type="button"
-        id="map-consent-button"
-        class="flex flex-col items-center gap-2 px-6 py-8 text-center text-sm font-semibold text-slate-600 hover:text-red-600"
-      >
-        <span class="text-3xl" aria-hidden="true">🗺️</span>
-        Toon kaart (laadt Google Maps)
-      </button>
+    <div class="overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+      <iframe
+        src={LINKS.mapsEmbed}
+        class="h-72 w-full md:h-full"
+        style="border:0"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title={`Kaart met de locatie van ${SITE.name}`}
+      ></iframe>
     </div>
   </div>
 </section>
-
-<script>
-  const slot = document.getElementById('map-slot');
-  const button = document.getElementById('map-consent-button');
-
-  button?.addEventListener('click', () => {
-    if (!slot) return;
-    const src = slot.dataset.mapSrc ?? '';
-    const title = slot.dataset.mapTitle ?? 'Kaart';
-    const iframe = document.createElement('iframe');
-    iframe.src = src;
-    iframe.title = title;
-    iframe.loading = 'lazy';
-    iframe.referrerPolicy = 'no-referrer-when-downgrade';
-    iframe.className = 'h-72 w-full md:h-full';
-    iframe.style.border = '0';
-    slot.replaceChildren(iframe);
-  });
-</script>

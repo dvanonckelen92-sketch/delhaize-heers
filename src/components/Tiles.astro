@@ -64,11 +64,11 @@ const tiles = [
           id={tile.id}
           class:list={[
             'flex flex-col rounded-2xl border p-6 shadow-sm transition hover:shadow-md',
-            tile.featured ? 'border-red-200 bg-red-50/40' : 'border-slate-200 bg-white',
+            tile.featured ? 'border-brand-200 bg-brand-50/40' : 'border-slate-200 bg-white',
           ]}
         >
           <span
-            class="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-red-600 ring-1 ring-red-100 [&_svg]:h-6 [&_svg]:w-6"
+            class="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-brand-600 ring-1 ring-brand-100 [&_svg]:h-6 [&_svg]:w-6"
             aria-hidden="true"
             set:html={tile.icon}
           />
@@ -79,7 +79,7 @@ const tiles = [
               href={tile.href}
               target={tile.external ? '_blank' : undefined}
               rel={tile.external ? 'noopener' : undefined}
-              class="inline-flex w-fit items-center gap-1 rounded-full bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700"
+              class="inline-flex w-fit items-center gap-1 rounded-full bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700"
             >
               {tile.cta}
             </a>
@@ -88,7 +88,7 @@ const tiles = [
                 href={tile.secondaryHref}
                 target="_blank"
                 rel="noopener"
-                class="inline-flex w-fit items-center gap-1 rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:border-red-600 hover:text-red-600"
+                class="inline-flex w-fit items-center gap-1 rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:border-brand-600 hover:text-brand-600"
               >
                 Google Play
               </a>

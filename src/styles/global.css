@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+/* Merk-rood, gesampled uit het officiële Delhaize-logo (#b01d32 = de 600-stap). */
+@theme {
+  --color-brand-50: #fdf2f3;
+  --color-brand-100: #fae0e4;
+  --color-brand-200: #f4bdc5;
+  --color-brand-300: #ec8d9b;
+  --color-brand-400: #e25065;
+  --color-brand-500: #d3223c;
+  --color-brand-600: #b01d32;
+  --color-brand-700: #8c1728;
+  --color-brand-800: #721320;
+  --color-brand-900: #5c0f1a;
+  --color-brand-950: #35090f;
+}

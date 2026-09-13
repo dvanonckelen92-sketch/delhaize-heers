@@ -4,22 +4,22 @@ import { SITE, STORE, LINKS } from '../consts';
 
 <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
   <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-    <a href="/" class="flex items-center gap-2 font-extrabold tracking-tight text-red-600">
+    <a href="/" class="flex items-center gap-2 font-extrabold tracking-tight text-brand-600">
       <img src="/images/delhaize-lion-logo.png" alt="" class="h-9 w-auto" aria-hidden="true" width="220" height="180" />
       <span class="text-lg leading-tight sm:text-xl">{SITE.name}</span>
     </a>
 
     <nav class="hidden items-center gap-6 text-sm font-medium text-slate-700 sm:flex" aria-label="Hoofdmenu">
-      <a href="#boodschappen" class="hover:text-red-600">Online boodschappen</a>
-      <a href="#folder" class="hover:text-red-600">Folder</a>
-      <a href="#openingsuren" class="hover:text-red-600">Openingsuren</a>
-      <a href="#contact" class="hover:text-red-600">Contact</a>
+      <a href="#boodschappen" class="hover:text-brand-600">Online boodschappen</a>
+      <a href="#folder" class="hover:text-brand-600">Folder</a>
+      <a href="#openingsuren" class="hover:text-brand-600">Openingsuren</a>
+      <a href="#contact" class="hover:text-brand-600">Contact</a>
     </nav>
 
     <div class="flex items-center gap-2">
       <a
         href={STORE.phoneHref}
-        class="hidden rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:border-red-600 hover:text-red-600 sm:inline-block"
+        class="hidden rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:border-brand-600 hover:text-brand-600 sm:inline-block"
       >
         {STORE.phone}
       </a>
@@ -27,7 +27,7 @@ import { SITE, STORE, LINKS } from '../consts';
         href={LINKS.route}
         target="_blank"
         rel="noopener"
-        class="rounded-full bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700"
+        class="rounded-full bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700"
       >
         Route
       </a>
