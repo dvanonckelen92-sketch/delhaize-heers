@@ -1,0 +1,17 @@
+---
+import { SITE, LINKS } from '../consts';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-slate-200 bg-slate-50">
+  <div class="mx-auto max-w-5xl px-4 py-8 text-sm text-slate-500 sm:px-6">
+    <p>
+      &copy; {year} {SITE.name}. Onafhankelijk uitgebate Delhaize-winkel, onderdeel van het{' '}
+      <a href={LINKS.officialStorePage} target="_blank" rel="noopener" class="underline hover:text-red-600">
+        Delhaize
+      </a>{' '}
+      winkelnetwerk.
+    </p>
+  </div>
+</footer>

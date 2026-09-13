@@ -1,0 +1,76 @@
+---
+import { SITE, STORE, OPENING_HOURS } from '../consts';
+---
+
+<section class="border-b border-slate-200 bg-gradient-to-b from-red-50 to-white">
+  <div class="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
+    <p
+      id="open-status"
+      class="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-semibold text-slate-500"
+      data-hours={JSON.stringify(OPENING_HOURS)}
+    >
+      <span class="h-2 w-2 rounded-full bg-slate-300" aria-hidden="true"></span>
+      Openingsuren laden…
+    </p>
+
+    <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+      {SITE.name}
+    </h1>
+    <p class="mt-3 max-w-xl text-lg text-slate-600">
+      {SITE.tagline} — vers, snel en dichtbij op {STORE.streetAddress}, {STORE.postalCode} {STORE.addressLocality}.
+    </p>
+
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a
+        href="#boodschappen"
+        class="rounded-full bg-red-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-red-700"
+      >
+        Doe online boodschappen
+      </a>
+      <a
+        href="#folder"
+        class="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 hover:border-red-600 hover:text-red-600"
+      >
+        Bekijk de folder
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  type Hours = { day: string; opens: string | null; closes: string | null };
+
+  const el = document.getElementById('open-status');
+  if (el) {
+    const hours: Hours[] = JSON.parse(el.dataset.hours ?? '[]');
+    const now = new Date();
+    // getDay(): 0 = zondag → 6 = zaterdag. Onze lijst begint op maandag (index 0).
+    const todayIndex = (now.getDay() + 6) % 7;
+    const today = hours[todayIndex];
+    const dot = el.querySelector('span');
+
+    const setStatus = (label: string, open: boolean | null) => {
+      el.lastChild!.textContent = label;
+      if (dot) {
+        dot.className = `h-2 w-2 rounded-full ${
+          open === true ? 'bg-green-500' : open === false ? 'bg-red-500' : 'bg-slate-300'
+        }`;
+      }
+    };
+
+    if (!today || !today.opens || !today.closes) {
+      setStatus('Vandaag gesloten', false);
+    } else {
+      const [openH, openM] = today.opens.split(':').map(Number);
+      const [closeH, closeM] = today.closes.split(':').map(Number);
+      const minutesNow = now.getHours() * 60 + now.getMinutes();
+      const opensAt = openH * 60 + openM;
+      const closesAt = closeH * 60 + closeM;
+      const isOpen = minutesNow >= opensAt && minutesNow < closesAt;
+      setStatus(
+        isOpen ? `Nu open — sluit om ${today.closes}` : `Nu gesloten — open om ${today.opens}`,
+        isOpen,
+      );
+    }
+  }
+</script>

@@ -1,0 +1,75 @@
+---
+import '../styles/global.css';
+import { SITE, STORE, OPENING_HOURS } from '../consts';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${SITE.name} | Supermarkt ${STORE.streetAddress}, ${STORE.postalCode} ${STORE.addressLocality}`,
+  description = `${SITE.name} is uw buurtsupermarkt op ${STORE.streetAddress} in ${STORE.addressLocality}. Bekijk de openingsuren, de weekfolder, doe Click & Collect boodschappen en download de Delhaize app.`,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'GroceryStore',
+  '@id': `${SITE.url}/#winkel`,
+  name: SITE.name,
+  url: SITE.url,
+  telephone: STORE.phone,
+  priceRange: '€€',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: STORE.streetAddress,
+    postalCode: STORE.postalCode,
+    addressLocality: STORE.addressLocality,
+    addressCountry: STORE.addressCountry,
+  },
+  openingHoursSpecification: OPENING_HOURS.map((d) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: `https://schema.org/${d.schemaDay}`,
+    opens: d.opens,
+    closes: d.closes,
+  })),
+};
+---
+
+<!doctype html>
+<html lang={SITE.language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content="index, follow" />
+    <meta name="geo.placename" content={`${STORE.addressLocality}, België`} />
+    <meta name="geo.region" content="BE-VLG" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={SITE.locale} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <!-- TODO: voeg een og:image toe (1200x630 foto van de winkel) zodra er productfoto's beschikbaar zijn -->
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+  </head>
+  <body class="bg-white text-slate-900 antialiased">
+    <slot />
+  </body>
+</html>

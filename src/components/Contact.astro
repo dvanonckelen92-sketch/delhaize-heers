@@ -1,0 +1,38 @@
+---
+import { SITE, STORE, LINKS } from '../consts';
+---
+
+<section id="contact" class="border-t border-slate-200 py-14">
+  <div class="mx-auto grid max-w-5xl gap-8 px-4 sm:px-6 md:grid-cols-2">
+    <div>
+      <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">Kom langs</h2>
+      <address class="mt-4 not-italic text-slate-600">
+        <p class="font-semibold text-slate-900">{SITE.name}</p>
+        <p>{STORE.streetAddress}</p>
+        <p>{STORE.postalCode} {STORE.addressLocality}</p>
+        <p class="mt-2">
+          <a href={STORE.phoneHref} class="font-semibold text-red-600 hover:underline">{STORE.phone}</a>
+        </p>
+      </address>
+      <a
+        href={LINKS.route}
+        target="_blank"
+        rel="noopener"
+        class="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-red-600 px-6 py-3 text-sm font-semibold text-white hover:bg-red-700"
+      >
+        Bereken je route
+      </a>
+    </div>
+
+    <div class="overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+      <iframe
+        src={LINKS.mapsEmbed}
+        class="h-72 w-full md:h-full"
+        style="border:0"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title={`Kaart met de locatie van ${SITE.name}`}
+      ></iframe>
+    </div>
+  </div>
+</section>

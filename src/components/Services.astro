@@ -1,0 +1,19 @@
+---
+import { SERVICES } from '../consts';
+---
+
+<section class="mx-auto max-w-5xl px-4 py-14 sm:px-6">
+  <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">In deze winkel</h2>
+  <ul class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+    {
+      SERVICES.map((service) => (
+        <li class="flex items-start gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700">
+          <span class="mt-0.5 text-red-600" aria-hidden="true">
+            ✓
+          </span>
+          {service}
+        </li>
+      ))
+    }
+  </ul>
+</section>
