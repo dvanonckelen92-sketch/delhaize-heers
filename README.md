@@ -64,12 +64,12 @@ netlify.toml                 # build-config voor Netlify
 ## Logo & foto's
 
 - Het beeldmerk (de rode leeuw) in de header/footer/social-preview is het officiële Delhaize-logo, gedownload van Delhaize's eigen perspagina (press.delhaize.be). Voor een sluitende merkgoedkeuring raad ik aan dit te laten bevestigen via je Delhaize-franchisecontact of het officiële partnerportaal — zij hebben doorgaans een volledige merkkit (exacte kleuren, logo-varianten, huisstijlregels) specifiek voor winkeluitbaters.
-- Er staan nog **geen echte foto's van de winkel zelf** op de site. Ik kan geen foto's van jullie pand overnemen van bv. Google Street View, Facebook of Google Maps-reviews, want die zijn auteursrechtelijk beschermd door anderen. Stuur me gerust eigen foto's van de winkel (buitenkant, interieur, team, een mooie foto van een volle boodschappenmand) door, dan verwerk ik ze in de "Snel geregeld"-kaartjes — of vraag ze op bij Delhaize's marketingondersteuning voor winkelpartners.
+- De foto's in de "Snel geregeld"-kaartjes (`public/images/tiles/`) zijn **geen** foto's van jullie eigen winkel — dat had ik niet mogen overnemen van bv. Google Street View, Facebook of reviewsites, want die zijn auteursrechtelijk beschermd door anderen. Het zijn rechtenvrije stockfoto's (Unsplash- en Pexels-licentie, vrij voor commercieel gebruik, geen naamsvermelding vereist) die de sfeer van het designvoorbeeld benaderen. Stuur me gerust eigen foto's van de winkel (buitenkant, interieur, team, een volle boodschappenmand) door, dan vervang ik de stockfoto's daarmee — dat komt sowieso persoonlijker over.
 - De App Store- en Google Play-badges bij de "Delhaize app"-tegel zijn de officiële downloadbadges (gedownload van delhaize.be, die op zijn beurt de standaard Apple/Google-badges gebruikt).
 
 ## Nog te doen vóór livegang
 
 1. **Bedrijfsgegevens invullen** — zie hierboven onder "Privacy".
-2. **Eigen foto's aanleveren** — zie hierboven onder "Logo & foto's".
+2. **Eigen foto's aanleveren** (optioneel, maar aanbevolen) — zie hierboven onder "Logo & foto's".
 3. **Gegevens controleren** — adres, telefoonnummer en openingsuren in `src/consts.ts` komen van de officiële Delhaize-winkelpagina (stores.delhaize.be/nl/delhaize-heers, geraadpleegd 13/09/2026). Controleer of dit nog klopt.
 4. **Analytics** (optioneel) — er is bewust geen tracking toegevoegd; als je bezoekersstatistieken wil, kan een privacyvriendelijke tool zoals Plausible of Fathom toegevoegd worden (en moet het privacybeleid daarop aangepast worden).
