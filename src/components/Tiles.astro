@@ -18,7 +18,7 @@ const tiles = [
     icon: ICONS.cart,
     external: true,
     featured: true,
-    image: { src: '/images/tiles/boodschappen.jpg', alt: 'Boodschappentassen met brood, appels, kool en bananen', rotate: '-rotate-2' },
+    image: { src: '/images/tiles/boodschappen.jpg', alt: 'Rieten mand met kaas, brood, eieren en asperges', rotate: '-rotate-2' },
   },
   {
     id: 'acties-folder',
@@ -29,7 +29,7 @@ const tiles = [
     icon: ICONS.tag,
     external: false,
     featured: true,
-    image: { src: '/images/tiles/folder.jpg', alt: 'Mand met verse tomaten, sperziebonen en courgette', rotate: 'rotate-2' },
+    image: { src: '/images/tiles/folder.jpg', alt: 'Stapel folders met -50% actie', rotate: 'rotate-2', position: 'object-[75%_70%]' },
   },
   {
     id: 'magazine',
@@ -40,7 +40,7 @@ const tiles = [
     icon: ICONS.book,
     external: true,
     featured: false,
-    image: { src: '/images/tiles/magazine.jpg', alt: 'Opengeslagen kookboek met recepten', rotate: '-rotate-2' },
+    image: { src: '/images/tiles/magazine.jpg', alt: 'Cover van het Delhaize Magazine', rotate: '-rotate-2' },
   },
   {
     id: 'app',
@@ -54,8 +54,14 @@ const tiles = [
 ];
 ---
 
-<section class="bg-stone-50 py-14">
-  <div class="mx-auto max-w-5xl px-4 sm:px-6">
+<section class="relative overflow-hidden bg-stone-50 py-14">
+  <div
+    class="absolute inset-0 bg-[url('/images/tiles-bg.jpg')] bg-cover bg-center opacity-70"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="absolute inset-0 bg-white/55" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-5xl px-4 sm:px-6">
     <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">Snel geregeld</h2>
     <p class="mt-2 text-slate-600">Alles wat je nodig hebt voor je bezoek aan {`Delhaize Heers`}.</p>
 
@@ -78,11 +84,12 @@ const tiles = [
               <img
                 src={tile.image.src}
                 alt={tile.image.alt}
-                width="160"
-                height="112"
+                width="200"
+                height="140"
                 class:list={[
-                  'h-16 w-24 shrink-0 rounded-xl object-cover shadow-md ring-4 ring-white sm:h-20 sm:w-28',
+                  'h-20 w-28 shrink-0 rounded-xl object-cover shadow-md ring-4 ring-white sm:h-24 sm:w-36',
                   tile.image.rotate,
+                  tile.image.position,
                 ]}
               />
             </div>
