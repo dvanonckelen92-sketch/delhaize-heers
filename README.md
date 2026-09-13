@@ -50,7 +50,7 @@ netlify.toml                 # build-config voor Netlify
 
 - [`privacybeleid.astro`](src/pages/privacybeleid.astro) legt uit welke (minimale) gegevens verwerkt worden, dat Netlify als hostingpartner optreedt, en wat de rechten van bezoekers zijn.
 - De site plaatst zelf geen cookies en heeft geen analytics. De Google Maps-kaart in de contactsectie wordt pas geladen nadat de bezoeker er zelf op klikt, zodat er geen Google-cookies gezet worden zonder interactie.
-- **Actie vereist:** vul in [`src/consts.ts`](src/consts.ts) (`COMPANY`-object) de echte bedrijfsnaam, het KBO-nummer en een contact-e-mailadres in — deze staan nu als placeholder omdat ik deze gegevens niet zelf mag verzinnen.
+- Bedrijfsgegevens (BV Company, ondernemingsnummer BE 0648.700.465, maatschappelijke zetel Sint-Barbarastraat(H.) 43) staan ingevuld in [`src/consts.ts`](src/consts.ts) (`COMPANY`-object), bron: companyweb.be. Nog **geen apart contact-e-mailadres** ontvangen — zolang dat leeg is (`privacyEmail: null`), verwijst het privacybeleid enkel naar het telefoonnummer. Vul het aan zodra je een adres wil gebruiken.
 
 ## Deployen op Netlify
 
@@ -69,7 +69,7 @@ netlify.toml                 # build-config voor Netlify
 
 ## Nog te doen vóór livegang
 
-1. **Bedrijfsgegevens invullen** — zie hierboven onder "Privacy".
-2. **Eigen foto's aanleveren** (optioneel, maar aanbevolen) — zie hierboven onder "Logo & foto's".
-3. **Gegevens controleren** — adres, telefoonnummer en openingsuren in `src/consts.ts` komen van de officiële Delhaize-winkelpagina (stores.delhaize.be/nl/delhaize-heers, geraadpleegd 13/09/2026). Controleer of dit nog klopt.
+1. **Eigen foto's aanleveren** (optioneel, maar aanbevolen) — zie hierboven onder "Logo & foto's".
+2. **Gegevens controleren** — adres, telefoonnummer en openingsuren in `src/consts.ts` komen van de officiële Delhaize-winkelpagina (stores.delhaize.be/nl/delhaize-heers, geraadpleegd 13/09/2026). Controleer of dit nog klopt.
+3. **Contact-e-mailadres** (optioneel) — voor privacyvragen, in `COMPANY.privacyEmail` in `src/consts.ts`.
 4. **Analytics** (optioneel) — er is bewust geen tracking toegevoegd; als je bezoekersstatistieken wil, kan een privacyvriendelijke tool zoals Plausible of Fathom toegevoegd worden (en moet het privacybeleid daarop aangepast worden).

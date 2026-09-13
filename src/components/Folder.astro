@@ -13,8 +13,9 @@ import { LINKS } from '../consts';
       </a>.
     </p>
 
-    <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+    <div class="relative mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
       <iframe
+        id="folder-iframe"
         src={LINKS.folderEmbed}
         class="h-[70vh] max-h-[600px] min-h-[380px] w-full"
         style="border:0"
@@ -22,6 +23,54 @@ import { LINKS } from '../consts';
         referrerpolicy="no-referrer-when-downgrade"
         title="Folder van deze week"
       ></iframe>
+
+      <button
+        type="button"
+        id="folder-fullscreen-button"
+        data-fallback-href={LINKS.folder}
+        aria-label="Folder groter bekijken (volledig scherm)"
+        class="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow ring-1 ring-slate-200 hover:text-brand-600"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4.5 w-4.5">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
+          <path d="M21 8V5a2 2 0 0 0-2-2h-3"></path>
+          <path d="M3 16v3a2 2 0 0 0 2 2h3"></path>
+          <path d="M16 21h3a2 2 0 0 0 2-2v-3"></path>
+        </svg>
+      </button>
     </div>
   </div>
 </section>
+
+<script>
+  const iframe = document.getElementById('folder-iframe');
+  const button = document.getElementById('folder-fullscreen-button');
+
+  button?.addEventListener('click', () => {
+    if (!iframe) return;
+    // De "Openen"-knop binnenin de Publitas-widget zelf probeert een nieuw tabblad te
+    // openen, wat door browsers/popupblockers soms wordt tegengehouden. Deze knop
+    // vergroot het iframe zelf via de browser's Fullscreen API. Lukt dat toch niet
+    // (oudere browser, restrictief beleid), dan valt ze terug op de folder-pagina
+    // van delhaize.be in een nieuw tabblad.
+    const el = iframe as HTMLIFrameElement & {
+      webkitRequestFullscreen?: () => Promise<void>;
+    };
+    // Navigeer in hetzelfde tabblad (niet window.open): een nieuw tabblad openen vanuit
+    // een asynchrone .catch() geldt niet meer als directe gebruikersactie, waardoor
+    // popupblockers dat alsnog kunnen tegenhouden. Navigatie in hetzelfde tabblad heeft
+    // dat probleem niet.
+    const fallback = () => {
+      const href = button.dataset.fallbackHref;
+      if (href) window.location.href = href;
+    };
+
+    try {
+      const request = el.requestFullscreen ? el.requestFullscreen() : el.webkitRequestFullscreen?.();
+      request?.catch(fallback);
+      if (!request) fallback();
+    } catch {
+      fallback();
+    }
+  });
+</script>

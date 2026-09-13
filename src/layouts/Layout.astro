@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { SITE, STORE, OPENING_HOURS, LINKS } from '../consts';
+import { SITE, STORE, OPENING_HOURS, LINKS, COMPANY } from '../consts';
 
 interface Props {
   title?: string;
@@ -20,6 +20,8 @@ const jsonLd = {
   '@type': 'GroceryStore',
   '@id': `${SITE.url}/#winkel`,
   name: SITE.name,
+  legalName: COMPANY.legalName,
+  vatID: COMPANY.kboNumber,
   url: SITE.url,
   telephone: STORE.phone,
   image: logoURL.toString(),

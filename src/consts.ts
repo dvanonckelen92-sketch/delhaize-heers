@@ -50,11 +50,15 @@ export const SERVICES = [
   'Zondagopening',
 ];
 
-// Vul de echte ondernemingsgegevens hier in vóór livegang — nodig voor een correct privacybeleid (GDPR/WER).
+// Bron: companyweb.be/nl/0648700465 (geraadpleegd 2026-09-13).
 export const COMPANY = {
-  legalName: '[in te vullen: officiële bedrijfsnaam / eenmanszaak]',
-  kboNumber: '[in te vullen: KBO-nummer]',
-  privacyEmail: '[in te vullen: e-mailadres voor privacyvragen]',
+  legalName: 'BV Company',
+  kboNumber: 'BE 0648.700.465',
+  // Maatschappelijke zetel (statutair adres) — kan afwijken van het winkeladres.
+  registeredOffice: 'Sint-Barbarastraat(H.) 43, 3870 Heers',
+  // Nog geen apart contactadres ontvangen; vul aan zodra beschikbaar. Tot dan verwijst
+  // het privacybeleid enkel naar het telefoonnummer van de winkel voor privacyvragen.
+  privacyEmail: null as string | null,
 };
 
 export const AGENCY = {

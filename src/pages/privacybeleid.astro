@@ -20,10 +20,12 @@ const lastUpdated = '13 september 2026';
       <section>
         <h2 class="text-xl font-bold text-slate-900">1. Wie is verantwoordelijk?</h2>
         <p>
-          Deze website ({SITE.url}) wordt beheerd door {COMPANY.legalName} (KBO-nummer {COMPANY.kboNumber}),
-          uitbater van {SITE.name}, gevestigd op {STORE.streetAddress}, {STORE.postalCode}{' '}
-          {STORE.addressLocality}, België. Voor vragen over dit privacybeleid of over uw gegevens kan u
-          terecht op {COMPANY.privacyEmail} of telefonisch op <a href={STORE.phoneHref} class="text-brand-600 underline">{STORE.phone}</a>.
+          Deze website ({SITE.url}) wordt beheerd door {COMPANY.legalName} (ondernemingsnummer{' '}
+          {COMPANY.kboNumber}), met maatschappelijke zetel op {COMPANY.registeredOffice}, uitbater van{' '}
+          {SITE.name} op {STORE.streetAddress}, {STORE.postalCode} {STORE.addressLocality}. Voor vragen
+          over dit privacybeleid of over uw gegevens kan u{' '}
+          {COMPANY.privacyEmail && <>terecht op {COMPANY.privacyEmail} of </>}telefonisch terecht op{' '}
+          <a href={STORE.phoneHref} class="text-brand-600 underline">{STORE.phone}</a>.
         </p>
       </section>
 
