@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, STORE, COMPANY, HOSTING } from '../consts';
+
+const lastUpdated = '13 september 2026';
+---
+
+<Layout
+  title={`Privacybeleid | ${SITE.name}`}
+  description={`Lees hoe ${SITE.name} omgaat met uw gegevens: welke informatie deze website verwerkt, welke hostingpartij wordt gebruikt en wat uw rechten zijn.`}
+>
+  <Header />
+  <main class="mx-auto max-w-3xl px-4 py-14 text-slate-700 sm:px-6">
+    <h1 class="text-3xl font-extrabold text-slate-900 sm:text-4xl">Privacybeleid</h1>
+    <p class="mt-2 text-sm text-slate-500">Laatst bijgewerkt op {lastUpdated}.</p>
+
+    <div class="prose prose-slate mt-8 max-w-none space-y-6">
+      <section>
+        <h2 class="text-xl font-bold text-slate-900">1. Wie is verantwoordelijk?</h2>
+        <p>
+          Deze website ({SITE.url}) wordt beheerd door {COMPANY.legalName} (KBO-nummer {COMPANY.kboNumber}),
+          uitbater van {SITE.name}, gevestigd op {STORE.streetAddress}, {STORE.postalCode}{' '}
+          {STORE.addressLocality}, België. Voor vragen over dit privacybeleid of over uw gegevens kan u
+          terecht op {COMPANY.privacyEmail} of telefonisch op <a href={STORE.phoneHref} class="text-red-600 underline">{STORE.phone}</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-slate-900">2. Welke gegevens verzamelen we?</h2>
+        <p>
+          Deze website is een statische informatiepagina: er zijn geen contactformulieren, geen
+          klantenaccounts en er wordt niets online besteld op {SITE.url} zelf. We verzamelen daarom
+          zelf geen persoonsgegevens via deze site, met uitzondering van de technische gegevens
+          hieronder.
+        </p>
+        <ul class="ml-5 list-disc space-y-1">
+          <li>
+            <strong>Serverlogs bij onze hostingpartner.</strong> Zoals elke website houdt onze hostingpartij{' '}
+            {HOSTING.provider} technische gegevens bij (zoals IP-adres, tijdstip en opgevraagde
+            pagina) om de website te laten werken, te beveiligen en tegen misbruik te beschermen. Deze
+            gegevens worden niet door ons zelf ingekeken voor marketingdoeleinden.
+          </li>
+          <li>
+            <strong>Google Maps.</strong> Op de contactsectie kan u optioneel een kaart met onze locatie
+            inladen. Deze kaart wordt pas geladen nadat u er zelf op klikt; vanaf dat moment is het
+            privacybeleid van Google van toepassing en kan Google cookies plaatsen.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-slate-900">3. Cookies</h2>
+        <p>
+          Deze website plaatst zelf geen cookies voor tracking of advertenties. Er is geen
+          bezoekersstatistieken-tool (analytics) actief. De enige cookies die kunnen optreden, zijn die
+          van Google, en uitsluitend nadat u zelf kiest om de kaart in de contactsectie te tonen (zie
+          hierboven).
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-slate-900">4. Waar wordt de website gehost?</h2>
+        <p>
+          Deze website wordt gehost bij {HOSTING.provider} ({HOSTING.providerAddress}). Netlify kan
+          gegevens verwerken buiten de Europese Economische Ruimte; Netlify voorziet hiervoor passende
+          waarborgen (zoals modelcontractbepalingen). Meer informatie vindt u in het{' '}
+          <a href={HOSTING.privacyPolicyUrl} target="_blank" rel="noopener" class="text-red-600 underline">
+            privacybeleid van Netlify
+          </a>.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-slate-900">5. Links naar Delhaize.be</h2>
+        <p>
+          Voor Click &amp; Collect, de folder, het magazine en de app-download verwijst deze website
+          door naar officiële pagina's van Delhaize op delhaize.be en naar de App Store / Google Play.
+          Zodra u die sites bezoekt, is het privacybeleid van Delhaize (of van Apple/Google)
+          van toepassing, niet dat van deze website.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-slate-900">6. Uw rechten</h2>
+        <p>Op grond van de AVG/GDPR heeft u het recht om:</p>
+        <ul class="ml-5 list-disc space-y-1">
+          <li>inzage te vragen in de gegevens die over u verwerkt worden;</li>
+          <li>onjuiste gegevens te laten corrigeren;</li>
+          <li>de verwijdering van uw gegevens te vragen;</li>
+          <li>bezwaar te maken tegen de verwerking van uw gegevens;</li>
+          <li>een klacht in te dienen bij de Belgische Gegevensbeschermingsautoriteit (GBA), Drukpersstraat 35, 1000 Brussel, <a href="https://www.gegevensbeschermingsautoriteit.be" target="_blank" rel="noopener" class="text-red-600 underline">gegevensbeschermingsautoriteit.be</a>.</li>
+        </ul>
+        <p>Om een van deze rechten uit te oefenen, contacteert u ons via de gegevens in punt 1.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-slate-900">7. Wijzigingen</h2>
+        <p>
+          We kunnen dit privacybeleid aanpassen, bijvoorbeeld wanneer de website nieuwe functies
+          krijgt. De datum bovenaan deze pagina geeft aan wanneer het beleid voor het laatst gewijzigd
+          werd.
+        </p>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Layout>

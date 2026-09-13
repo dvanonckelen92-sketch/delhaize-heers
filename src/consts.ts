@@ -50,6 +50,23 @@ export const SERVICES = [
   'Zondagopening',
 ];
 
+// Vul de echte ondernemingsgegevens hier in vóór livegang — nodig voor een correct privacybeleid (GDPR/WER).
+export const COMPANY = {
+  legalName: '[in te vullen: officiële bedrijfsnaam / eenmanszaak]',
+  kboNumber: '[in te vullen: KBO-nummer]',
+  privacyEmail: '[in te vullen: e-mailadres voor privacyvragen]',
+};
+
+export const AGENCY = {
+  name: 'Coop Consult',
+};
+
+export const HOSTING = {
+  provider: 'Netlify, Inc.',
+  providerAddress: '512 2nd Street, Suite 200, San Francisco, CA 94107, Verenigde Staten',
+  privacyPolicyUrl: 'https://www.netlify.com/privacy/',
+};
+
 export const LINKS = {
   collect: 'https://www.delhaize.be/collect',
   folder: 'https://www.delhaize.be/nl/folder',
