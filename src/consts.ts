@@ -59,6 +59,7 @@ export const COMPANY = {
 
 export const AGENCY = {
   name: 'Coop Consult',
+  url: 'https://coopconsult.be',
 };
 
 export const HOSTING = {
