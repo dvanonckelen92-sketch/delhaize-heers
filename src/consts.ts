@@ -79,4 +79,6 @@ export const LINKS = {
   officialStorePage: 'https://stores.delhaize.be/nl/delhaize-heers',
   route: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('Nieuwe Steenweg 42, 3870 Heers')}`,
   mapsEmbed: `https://www.google.com/maps?q=${encodeURIComponent('Nieuwe Steenweg 42, 3870 Heers')}&output=embed`,
+  facebook: 'https://www.facebook.com/ADDelhaizeHeers/',
+  googleBusiness: 'https://share.google/SnI6y0iiRUPBldAxk',
 };

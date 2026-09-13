@@ -64,7 +64,8 @@ netlify.toml                 # build-config voor Netlify
 ## Logo & foto's
 
 - Het beeldmerk (de rode leeuw) in de header/footer/social-preview is het officiële Delhaize-logo, gedownload van Delhaize's eigen perspagina (press.delhaize.be). Voor een sluitende merkgoedkeuring raad ik aan dit te laten bevestigen via je Delhaize-franchisecontact of het officiële partnerportaal — zij hebben doorgaans een volledige merkkit (exacte kleuren, logo-varianten, huisstijlregels) specifiek voor winkeluitbaters.
-- Er staan nog **geen echte foto's van de winkel zelf** op de site. Ik kan geen foto's van jullie pand overnemen van bv. Google Street View, Facebook of Google Maps-reviews, want die zijn auteursrechtelijk beschermd door anderen. Stuur me gerust eigen foto's van de winkel (buitenkant, interieur, team) door, dan verwerk ik ze — of vraag ze op bij Delhaize's marketingondersteuning voor winkelpartners.
+- Er staan nog **geen echte foto's van de winkel zelf** op de site. Ik kan geen foto's van jullie pand overnemen van bv. Google Street View, Facebook of Google Maps-reviews, want die zijn auteursrechtelijk beschermd door anderen. Stuur me gerust eigen foto's van de winkel (buitenkant, interieur, team, een mooie foto van een volle boodschappenmand) door, dan verwerk ik ze in de "Snel geregeld"-kaartjes — of vraag ze op bij Delhaize's marketingondersteuning voor winkelpartners.
+- De App Store- en Google Play-badges bij de "Delhaize app"-tegel zijn de officiële downloadbadges (gedownload van delhaize.be, die op zijn beurt de standaard Apple/Google-badges gebruikt).
 
 ## Nog te doen vóór livegang
 

@@ -43,59 +43,60 @@ const tiles = [
     id: 'app',
     title: 'Delhaize app',
     description: 'Al je SuperPlus-voordelen en e-Deals in één app, ook in deze winkel.',
-    cta: 'Download de app',
-    href: LINKS.appStore,
-    secondaryHref: LINKS.playStore,
     icon: ICONS.phone,
-    external: true,
     featured: false,
+    appBadges: true,
   },
 ];
 ---
 
-<section class="mx-auto max-w-5xl px-4 py-14 sm:px-6">
-  <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">Snel geregeld</h2>
-  <p class="mt-2 text-slate-600">Alles wat je nodig hebt voor je bezoek aan {`Delhaize Heers`}.</p>
+<section class="bg-stone-50 py-14">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6">
+    <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">Snel geregeld</h2>
+    <p class="mt-2 text-slate-600">Alles wat je nodig hebt voor je bezoek aan {`Delhaize Heers`}.</p>
 
-  <div class="mt-8 grid gap-4 sm:grid-cols-2">
-    {
-      tiles.map((tile) => (
-        <div
-          id={tile.id}
-          class:list={[
-            'flex flex-col rounded-2xl border p-6 shadow-sm transition hover:shadow-md',
-            tile.featured ? 'border-brand-200 bg-brand-50/40' : 'border-slate-200 bg-white',
-          ]}
-        >
-          <span
-            class="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-brand-600 ring-1 ring-brand-100 [&_svg]:h-6 [&_svg]:w-6"
-            aria-hidden="true"
-            set:html={tile.icon}
-          />
-          <h3 class="mt-4 text-lg font-bold text-slate-900">{tile.title}</h3>
-          <p class="mt-1 flex-1 text-sm text-slate-600">{tile.description}</p>
-          <div class="mt-4 flex flex-wrap gap-3">
-            <a
-              href={tile.href}
-              target={tile.external ? '_blank' : undefined}
-              rel={tile.external ? 'noopener' : undefined}
-              class="inline-flex w-fit items-center gap-1 rounded-full bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700"
-            >
-              {tile.cta}
-            </a>
-            {tile.secondaryHref && (
-              <a
-                href={tile.secondaryHref}
-                target="_blank"
-                rel="noopener"
-                class="inline-flex w-fit items-center gap-1 rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:border-brand-600 hover:text-brand-600"
-              >
-                Google Play
-              </a>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+      {
+        tiles.map((tile) => (
+          <div
+            id={tile.id}
+            class:list={[
+              'flex flex-col rounded-3xl border p-6 shadow-sm transition hover:shadow-md',
+              tile.featured ? 'border-brand-200 bg-brand-50/40' : 'border-slate-200 bg-white',
+            ]}
+          >
+            <span
+              class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-brand-600 shadow-sm ring-1 ring-brand-100 [&_svg]:h-7 [&_svg]:w-7"
+              aria-hidden="true"
+              set:html={tile.icon}
+            />
+            <h3 class="mt-4 text-lg font-bold text-slate-900">{tile.title}</h3>
+            <p class="mt-1 flex-1 text-sm text-slate-600">{tile.description}</p>
+
+            {tile.appBadges ? (
+              <div class="mt-4 flex flex-wrap gap-3">
+                <a href={LINKS.appStore} target="_blank" rel="noopener" aria-label="Download op de App Store">
+                  <img src="/images/app-store-badge.svg" alt="Download op de App Store" class="h-10 w-auto" width="120" height="40" />
+                </a>
+                <a href={LINKS.playStore} target="_blank" rel="noopener" aria-label="Ontdek het op Google Play">
+                  <img src="/images/play-store-badge.svg" alt="Ontdek het op Google Play" class="h-10 w-auto" width="120" height="40" />
+                </a>
+              </div>
+            ) : (
+              <div class="mt-4">
+                <a
+                  href={tile.href}
+                  target={tile.external ? '_blank' : undefined}
+                  rel={tile.external ? 'noopener' : undefined}
+                  class="inline-flex w-fit items-center gap-1 rounded-full bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700"
+                >
+                  {tile.cta}
+                </a>
+              </div>
             )}
           </div>
-        </div>
-      ))
-    }
+        ))
+      }
+    </div>
   </div>
 </section>

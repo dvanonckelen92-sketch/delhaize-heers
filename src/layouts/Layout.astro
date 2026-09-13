@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { SITE, STORE, OPENING_HOURS } from '../consts';
+import { SITE, STORE, OPENING_HOURS, LINKS } from '../consts';
 
 interface Props {
   title?: string;
@@ -25,6 +25,7 @@ const jsonLd = {
   image: logoURL.toString(),
   logo: logoURL.toString(),
   priceRange: '€€',
+  sameAs: [LINKS.facebook, LINKS.googleBusiness],
   address: {
     '@type': 'PostalAddress',
     streetAddress: STORE.streetAddress,

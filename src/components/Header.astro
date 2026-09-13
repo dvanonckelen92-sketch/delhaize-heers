@@ -1,5 +1,12 @@
 ---
 import { SITE, STORE, LINKS } from '../consts';
+
+const NAV_LINKS = [
+  { href: '#boodschappen', label: 'Online boodschappen' },
+  { href: '#folder', label: 'Folder' },
+  { href: '#openingsuren', label: 'Openingsuren' },
+  { href: '#contact', label: 'Contact' },
+];
 ---
 
 <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
@@ -10,10 +17,9 @@ import { SITE, STORE, LINKS } from '../consts';
     </a>
 
     <nav class="hidden items-center gap-6 text-sm font-medium text-slate-700 sm:flex" aria-label="Hoofdmenu">
-      <a href="#boodschappen" class="hover:text-brand-600">Online boodschappen</a>
-      <a href="#folder" class="hover:text-brand-600">Folder</a>
-      <a href="#openingsuren" class="hover:text-brand-600">Openingsuren</a>
-      <a href="#contact" class="hover:text-brand-600">Contact</a>
+      {NAV_LINKS.map((link) => (
+        <a href={link.href} class="hover:text-brand-600">{link.label}</a>
+      ))}
     </nav>
 
     <div class="flex items-center gap-2">
@@ -31,6 +37,65 @@ import { SITE, STORE, LINKS } from '../consts';
       >
         Route
       </a>
+      <button
+        type="button"
+        id="menu-toggle"
+        aria-label="Menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 text-slate-700 sm:hidden"
+      >
+        <svg id="menu-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-5 w-5">
+          <line x1="4" y1="7" x2="20" y2="7"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="17" x2="20" y2="17"></line>
+        </svg>
+        <svg id="menu-icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden h-5 w-5">
+          <line x1="5" y1="5" x2="19" y2="19"></line>
+          <line x1="19" y1="5" x2="5" y2="19"></line>
+        </svg>
+      </button>
     </div>
   </div>
+
+  <nav
+    id="mobile-menu"
+    hidden
+    class="flex flex-col gap-1 border-t border-slate-200 bg-white px-4 py-3 sm:hidden"
+    aria-label="Mobiel menu"
+  >
+    {NAV_LINKS.map((link) => (
+      <a href={link.href} class="rounded-lg px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">
+        {link.label}
+      </a>
+    ))}
+    <a href={STORE.phoneHref} class="rounded-lg px-3 py-2.5 text-base font-medium text-brand-600 hover:bg-brand-50">
+      {STORE.phone}
+    </a>
+  </nav>
 </header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  toggle?.addEventListener('click', () => {
+    if (!menu) return;
+    const isOpen = !menu.hidden;
+    menu.hidden = isOpen;
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    iconOpen?.classList.toggle('hidden', !isOpen);
+    iconClose?.classList.toggle('hidden', isOpen);
+  });
+
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu.hidden = true;
+      toggle?.setAttribute('aria-expanded', 'false');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+    });
+  });
+</script>

@@ -13,37 +13,15 @@ import { LINKS } from '../consts';
       </a>.
     </p>
 
-    <div
-      id="folder-slot"
-      class="relative mt-6 flex min-h-[420px] items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
-      data-folder-src={LINKS.folderEmbed}
-    >
-      <button
-        type="button"
-        id="folder-consent-button"
-        class="flex flex-col items-center gap-2 px-6 py-8 text-center text-sm font-semibold text-slate-600 hover:text-brand-600"
-      >
-        <span class="text-3xl" aria-hidden="true">🛍️</span>
-        Toon de folder (laadt inhoud van Delhaize / Publitas)
-      </button>
+    <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <iframe
+        src={LINKS.folderEmbed}
+        class="h-[70vh] max-h-[600px] min-h-[380px] w-full"
+        style="border:0"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Folder van deze week"
+      ></iframe>
     </div>
   </div>
 </section>
-
-<script>
-  const slot = document.getElementById('folder-slot');
-  const button = document.getElementById('folder-consent-button');
-
-  button?.addEventListener('click', () => {
-    if (!slot) return;
-    const src = slot.dataset.folderSrc ?? '';
-    const iframe = document.createElement('iframe');
-    iframe.src = src;
-    iframe.title = 'Folder van deze week';
-    iframe.loading = 'lazy';
-    iframe.referrerPolicy = 'no-referrer-when-downgrade';
-    iframe.className = 'h-[600px] w-full';
-    iframe.style.border = '0';
-    slot.replaceChildren(iframe);
-  });
-</script>
