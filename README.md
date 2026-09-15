@@ -1,7 +1,7 @@
-# Delhaize Heers — website (primi.be)
+# Delhaize Heers — website (delhaizeheers.be)
 
 Statische website voor Delhaize Heers, gebouwd met [Astro](https://astro.build) + Tailwind CSS.
-Bedoeld om te draaien op het bestaande domein **www.primi.be**, gehost op **Netlify**.
+Bedoeld om te draaien op het domein **www.delhaizeheers.be**, gehost op **Netlify**.
 Website door Coop Consult.
 
 ## Structuur
@@ -56,10 +56,10 @@ netlify.toml                 # build-config voor Netlify
 
 1. Maak een nieuwe site op [app.netlify.com](https://app.netlify.com) en koppel deze Git-repository.
 2. Build-instellingen (staan ook al in `netlify.toml`): build command `npm run build`, publish directory `dist`.
-3. Voeg het domein toe onder **Domain settings → Add a domain** → `www.primi.be`.
-4. Zet bij de domeinregistrar van primi.be een **CNAME** voor `www` naar het Netlify-subdomein dat je krijgt (bv. `jouwsite.netlify.app`), of gebruik Netlify DNS als je de volledige DNS wil laten beheren. Netlify toont de exacte instructie zodra je het domein toevoegt.
+3. Voeg het domein toe onder **Domain settings → Add a domain** → `www.delhaizeheers.be` (en `delhaizeheers.be` als alias).
+4. Zet bij de domeinregistrar van delhaizeheers.be een **CNAME** voor `www` naar het Netlify-subdomein dat je krijgt (bv. `jouwsite.netlify.app`), of gebruik Netlify DNS als je de volledige DNS wil laten beheren. Netlify toont de exacte instructie zodra je het domein toevoegt.
 5. Netlify voorziet automatisch een gratis HTTPS-certificaat (Let's Encrypt) zodra de DNS correct wijst.
-6. Zorg voor een redirect van het kale domein `primi.be` naar `www.primi.be` (of omgekeerd) — Netlify's domainmanagement doet dit automatisch zodra beide aan dezelfde site gekoppeld zijn.
+6. De redirect van het kale domein `delhaizeheers.be` naar `www.delhaizeheers.be` staat al vast in `netlify.toml` (301), zodat zoekmachines geen duplicate content zien op beide varianten.
 
 ## Logo & foto's
 

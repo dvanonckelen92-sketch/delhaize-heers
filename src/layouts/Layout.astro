@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { SITE, STORE, OPENING_HOURS, LINKS, COMPANY } from '../consts';
+import { SITE, STORE, OPENING_HOURS, SERVICES, LINKS, COMPANY } from '../consts';
 
 interface Props {
   title?: string;
@@ -27,7 +27,13 @@ const jsonLd = {
   image: logoURL.toString(),
   logo: logoURL.toString(),
   priceRange: '€€',
-  sameAs: [LINKS.facebook, LINKS.googleBusiness],
+  currenciesAccepted: 'EUR',
+  areaServed: {
+    '@type': 'City',
+    name: STORE.addressLocality,
+  },
+  hasMap: LINKS.hasMap,
+  sameAs: [LINKS.facebook, LINKS.instagram, LINKS.googleBusiness, LINKS.officialStorePage],
   address: {
     '@type': 'PostalAddress',
     streetAddress: STORE.streetAddress,
@@ -35,11 +41,21 @@ const jsonLd = {
     addressLocality: STORE.addressLocality,
     addressCountry: STORE.addressCountry,
   },
+  // Shorthand-notatie naast openingHoursSpecification: sommige parsers en AI-antwoordmachines
+  // lezen enkel dit eenvoudigere formaat.
+  openingHours: OPENING_HOURS.filter((d) => d.opens && d.closes).map(
+    (d) => `${d.schemaDay.slice(0, 2)} ${d.opens}-${d.closes}`,
+  ),
   openingHoursSpecification: OPENING_HOURS.map((d) => ({
     '@type': 'OpeningHoursSpecification',
     dayOfWeek: `https://schema.org/${d.schemaDay}`,
     opens: d.opens,
     closes: d.closes,
+  })),
+  amenityFeature: SERVICES.map((service) => ({
+    '@type': 'LocationFeatureSpecification',
+    name: service,
+    value: true,
   })),
 };
 ---
