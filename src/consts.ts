@@ -5,7 +5,7 @@ export const SITE = {
   name: 'Delhaize Heers',
   legalFormat: 'AD Delhaize',
   tagline: 'Uw buurtsupermarkt in Heers',
-  url: 'https://www.delhaizeheers.be',
+  url: 'https://delhaizeheers.be',
   locale: 'nl_BE',
   language: 'nl',
 };

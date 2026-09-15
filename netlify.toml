@@ -2,11 +2,12 @@
   command = "npm run build"
   publish = "dist"
 
-# Canonieke domeinredirect: forceer www zodat er geen duplicate-content (SEO) ontstaat
-# tussen het kale en het www-domein, ook als de DNS/domain-instellingen dit nog niet afdwingen.
+# Canonieke domeinredirect: forceer het kale domein (geen www) zodat er geen
+# duplicate-content (SEO) ontstaat tussen beide varianten, ook als de
+# DNS/domain-instellingen dit nog niet afdwingen.
 [[redirects]]
-  from = "https://delhaizeheers.be/*"
-  to = "https://www.delhaizeheers.be/:splat"
+  from = "https://www.delhaizeheers.be/*"
+  to = "https://delhaizeheers.be/:splat"
   status = 301
   force = true
 

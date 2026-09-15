@@ -1,7 +1,7 @@
 # Delhaize Heers — website (delhaizeheers.be)
 
 Statische website voor Delhaize Heers, gebouwd met [Astro](https://astro.build) + Tailwind CSS.
-Bedoeld om te draaien op het domein **www.delhaizeheers.be**, gehost op **Netlify**.
+Bedoeld om te draaien op het domein **delhaizeheers.be** (kaal, geen www), gehost op **Netlify**.
 Website door Coop Consult.
 
 ## Structuur
@@ -25,6 +25,7 @@ public/
 ├── images/delhaize-lion-logo.png   # officieel Delhaize-beeldmerk (persmateriaal Delhaize)
 ├── robots.txt
 └── favicon.svg
+src/pages/llms.txt.ts        # /llms.txt — winkelgegevens als platte tekst voor AI-assistenten
 netlify.toml                 # build-config voor Netlify
 ```
 
@@ -41,8 +42,10 @@ netlify.toml                 # build-config voor Netlify
 
 - Unieke `<title>` en meta description met adres en plaatsnaam ("Heers")
 - Canonical URL, Open Graph- en Twitter-tags (met het officiële Delhaize-beeldmerk als afbeelding)
-- JSON-LD gestructureerde data (`GroceryStore`) met NAW-gegevens en openingsuren
+- JSON-LD gestructureerde data (`GroceryStore`) met NAW-gegevens, exacte Google Place ID, openingsuren, `areaServed`, `sameAs` en de diensten in de winkel (`amenityFeature`)
 - `robots.txt` + automatisch gegenereerde `sitemap-index.xml` (via `@astrojs/sitemap`)
+- `robots.txt` staat expliciet open voor AI-crawlers/antwoordmachines (GPTBot/ChatGPT, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended, Meta, ...) zodat de winkel correct opduikt in ChatGPT, Claude, Perplexity, Gemini en Google AI Overviews (GEO/AEO)
+- [`/llms.txt`](src/pages/llms.txt.ts) geeft AI-assistenten een compacte, altijd actuele samenvatting (adres, uren, diensten, links) zonder dat ze de HTML moeten parsen
 - Semantische HTML (één `<h1>`, `<address>`, `<nav>`), volledig statisch en dus zeer snel
 - Mobielvriendelijk (belangrijk: klanten scannen de QR-code op de winkel meestal met hun telefoon)
 
@@ -56,10 +59,10 @@ netlify.toml                 # build-config voor Netlify
 
 1. Maak een nieuwe site op [app.netlify.com](https://app.netlify.com) en koppel deze Git-repository.
 2. Build-instellingen (staan ook al in `netlify.toml`): build command `npm run build`, publish directory `dist`.
-3. Voeg het domein toe onder **Domain settings → Add a domain** → `www.delhaizeheers.be` (en `delhaizeheers.be` als alias).
-4. Zet bij de domeinregistrar van delhaizeheers.be een **CNAME** voor `www` naar het Netlify-subdomein dat je krijgt (bv. `jouwsite.netlify.app`), of gebruik Netlify DNS als je de volledige DNS wil laten beheren. Netlify toont de exacte instructie zodra je het domein toevoegt.
+3. Voeg het domein toe onder **Domain settings → Add a domain** → `delhaizeheers.be` (primary domain) en voeg `www.delhaizeheers.be` toe als alias/redirect-domein.
+4. Zet bij de domeinregistrar van delhaizeheers.be een **A/ALIAS-record** voor het kale domein en/of een **CNAME** voor `www` naar het Netlify-subdomein dat je krijgt (bv. `jouwsite.netlify.app`), of gebruik Netlify DNS als je de volledige DNS wil laten beheren. Netlify toont de exacte instructie zodra je het domein toevoegt.
 5. Netlify voorziet automatisch een gratis HTTPS-certificaat (Let's Encrypt) zodra de DNS correct wijst.
-6. De redirect van het kale domein `delhaizeheers.be` naar `www.delhaizeheers.be` staat al vast in `netlify.toml` (301), zodat zoekmachines geen duplicate content zien op beide varianten.
+6. De redirect van `www.delhaizeheers.be` naar het kale domein `delhaizeheers.be` staat al vast in `netlify.toml` (301), zodat zoekmachines geen duplicate content zien op beide varianten.
 
 ## Logo & foto's
 
