@@ -29,7 +29,7 @@ import { LINKS } from '../consts';
         id="folder-fullscreen-button"
         data-fallback-href={LINKS.folder}
         aria-label="Folder groter bekijken (volledig scherm)"
-        class="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow ring-1 ring-slate-200 hover:text-brand-600"
+        class="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow ring-1 ring-slate-200 hover:text-brand-600"
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4.5 w-4.5">
           <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
@@ -38,6 +38,17 @@ import { LINKS } from '../consts';
           <path d="M16 21h3a2 2 0 0 0 2-2v-3"></path>
         </svg>
       </button>
+
+      <button
+        type="button"
+        id="folder-touch-guard"
+        aria-label="Tik om door de folder te bladeren"
+        class="absolute inset-0 z-10 flex items-end justify-center bg-transparent pb-3 sm:hidden"
+      >
+        <span class="rounded-full bg-slate-900/70 px-3 py-1 text-xs font-medium text-white shadow">
+          Tik om te bladeren
+        </span>
+      </button>
     </div>
   </div>
 </section>
@@ -45,6 +56,19 @@ import { LINKS } from '../consts';
 <script>
   const iframe = document.getElementById('folder-iframe');
   const button = document.getElementById('folder-fullscreen-button');
+  const touchGuard = document.getElementById('folder-touch-guard');
+
+  // Op mobiel steelt de Publitas-flipbook binnenin het iframe elke swipe (die dient om
+  // pagina's om te slaan), waardoor bezoekers niet met hun vinger voorbij de folder naar
+  // beneden kunnen scrollen. Deze knop ligt bovenop het iframe en laat een gewone swipe
+  // gewoon de pagina scrollen; enkel een bewuste tik "activeert" de folder zelf.
+  touchGuard?.addEventListener(
+    'click',
+    () => {
+      touchGuard.style.display = 'none';
+    },
+    { once: true }
+  );
 
   button?.addEventListener('click', () => {
     if (!iframe) return;
