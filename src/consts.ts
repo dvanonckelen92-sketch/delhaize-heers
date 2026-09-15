@@ -85,7 +85,9 @@ export const LINKS = {
   officialStorePage: 'https://stores.delhaize.be/nl/delhaize-heers',
   // destination_place_id koppelt de route ondubbelzinnig aan deze winkel i.p.v. aan een tekst-match.
   route: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('Nieuwe Steenweg 42, 3870 Heers')}&destination_place_id=${STORE.googlePlaceId}`,
-  mapsEmbed: `https://www.google.com/maps?q=place_id:${STORE.googlePlaceId}&output=embed`,
+  // De gratis kaal-embed ("output=embed" zonder API-key) begrijpt geen "q=place_id:...";
+  // dat werkt enkel met de betaalde Maps Embed API. Daarom hier een tekstadres i.p.v. de place ID.
+  mapsEmbed: `https://www.google.com/maps?q=${encodeURIComponent('Delhaize Heers, Nieuwe Steenweg 42, 3870 Heers')}&output=embed`,
   // Canonieke Google Maps-kaartlink voor structured data (JSON-LD "hasMap").
   hasMap: `https://www.google.com/maps/place/?q=place_id:${STORE.googlePlaceId}`,
   facebook: 'https://www.facebook.com/ADDelhaizeHeers/',
