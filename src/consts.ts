@@ -5,7 +5,7 @@ export const SITE = {
   name: 'Delhaize Heers',
   legalFormat: 'AD Delhaize',
   tagline: 'Uw buurtsupermarkt in Heers',
-  url: 'https://www.primi.be',
+  url: 'https://delhaizeheers.be',
   locale: 'nl_BE',
   language: 'nl',
 };
@@ -18,6 +18,8 @@ export const STORE = {
   phone: '+32 11 48 00 18',
   phoneHref: 'tel:+3211480018',
   mapsQuery: 'Nieuwe Steenweg 42, 3870 Heers',
+  // Google Place ID van deze winkel (bevestigd via Google Maps), gebruikt voor exacte kaart-/routelinks.
+  googlePlaceId: 'ChIJfzmzvp0cwUcRBipa_YZeJ8Y',
 };
 
 export type DayHours = {
@@ -81,8 +83,11 @@ export const LINKS = {
   appStore: 'https://apps.apple.com/us/app/my-delhaize/id1463175036',
   playStore: 'https://play.google.com/store/apps/details?id=be.delhaize.my',
   officialStorePage: 'https://stores.delhaize.be/nl/delhaize-heers',
-  route: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('Nieuwe Steenweg 42, 3870 Heers')}`,
-  mapsEmbed: `https://www.google.com/maps?q=${encodeURIComponent('Nieuwe Steenweg 42, 3870 Heers')}&output=embed`,
+  // destination_place_id koppelt de route ondubbelzinnig aan deze winkel i.p.v. aan een tekst-match.
+  route: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('Nieuwe Steenweg 42, 3870 Heers')}&destination_place_id=${STORE.googlePlaceId}`,
+  mapsEmbed: `https://www.google.com/maps?q=place_id:${STORE.googlePlaceId}&output=embed`,
+  // Canonieke Google Maps-kaartlink voor structured data (JSON-LD "hasMap").
+  hasMap: `https://www.google.com/maps/place/?q=place_id:${STORE.googlePlaceId}`,
   facebook: 'https://www.facebook.com/ADDelhaizeHeers/',
   instagram: 'https://www.instagram.com/addelhaizeheers/',
   googleBusiness: 'https://share.google/SnI6y0iiRUPBldAxk',
