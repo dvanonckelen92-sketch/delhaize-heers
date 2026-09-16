@@ -1,0 +1,23 @@
+{
+  "name": "Delhaize Heers",
+  "short_name": "Delhaize Heers",
+  "description": "Uw buurtsupermarkt op Nieuwe Steenweg 42 in Heers.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "lang": "nl-BE",
+  "theme_color": "#b01d32",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

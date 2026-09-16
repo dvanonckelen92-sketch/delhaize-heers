@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../consts';
+---
+
+<Layout title={`Pagina niet gevonden | ${SITE.name}`} description={`Deze pagina bestaat niet (meer). Ga terug naar de homepage van ${SITE.name}.`}>
+  <Header />
+  <main class="mx-auto max-w-3xl px-4 py-24 text-center sm:px-6">
+    <p class="text-sm font-semibold text-brand-600">404</p>
+    <h1 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">Pagina niet gevonden</h1>
+    <p class="mt-4 text-slate-600">
+      Sorry, deze pagina bestaat niet (meer). Ga terug naar de homepage om verder te zoeken.
+    </p>
+    <a
+      href="/"
+      class="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700"
+    >
+      Terug naar de homepage
+    </a>
+  </main>
+  <Footer />
+</Layout>
