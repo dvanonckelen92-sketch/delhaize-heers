@@ -17,3 +17,22 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Resource-Policy = "same-origin"
+    # 'unsafe-inline' in script-src: Astro inlines this site's two small component
+    # scripts (mobiel menu, openingsuren-status) directly in de HTML in plaats van als
+    # apart bestand — er is geen nonce-/hash-infrastructuur op deze statische build.
+    # Cross-Origin-Embedder-Policy is bewust weggelaten: die breekt de ingesloten
+    # Google Maps- en Publitas-folder-iframe, die zelf geen COEP/CORP meesturen.
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; script-src 'self' 'unsafe-inline' https://view.publitas.com https://*.publitas.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.publitas.com https://*.google.com https://*.gstatic.com https://*.googleapis.com; font-src 'self' data:; frame-src 'self' https://www.google.com https://*.publitas.com; connect-src 'self' https://*.publitas.com; form-action 'self'"
+
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
