@@ -1,8 +1,9 @@
 ---
-import { SITE, STORE, LINKS } from '../consts';
+import { SITE, STORE, LINKS, promosActive } from '../consts';
 
 const NAV_LINKS = [
   { href: '#boodschappen', label: 'Online boodschappen' },
+  ...(promosActive() ? [{ href: '#promoties', label: 'Promoties' }] : []),
   { href: '#folder', label: 'Folder' },
   { href: '#openingsuren', label: 'Openingsuren' },
   { href: '#contact', label: 'Contact' },

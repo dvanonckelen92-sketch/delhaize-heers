@@ -94,3 +94,65 @@ export const LINKS = {
   instagram: 'https://www.instagram.com/addelhaizeheers/',
   googleBusiness: 'https://share.google/SnI6y0iiRUPBldAxk',
 };
+
+// --- Tijdelijke promoties -------------------------------------------------
+// Acties die de winkel zelf aankondigt (bron: Facebook-pagina AD Delhaize Heers).
+// Onderhoud: pas PROMO_VALID_UNTIL aan bij een nieuwe actieperiode en vervang de
+// items. Zet PROMOS op een lege lijst zodra er niets loopt; de sectie, de
+// menulink en de structured data verdwijnen dan vanzelf.
+export type Promo = {
+  id: string;
+  // Het voordeel zoals het op de affiche staat, bv. '1+1' of '2+3'.
+  deal: string;
+  title: string;
+  subtitle: string;
+  detail: string;
+  image: string;
+  alt: string;
+};
+
+// Laatste dag dat de acties gelden (YYYY-MM-DD), of null als de einddatum niet
+// bekend is. Bij een datum verbergt de sectie zichzelf automatisch na die dag.
+export const PROMO_VALID_UNTIL: string | null = null;
+
+export const PROMOS: Promo[] = [
+  {
+    id: 'dreft-coral',
+    deal: '1+1 & 1+2',
+    title: 'Dreft en Coral wasmiddel',
+    subtitle: 'Voordelig huishouden',
+    detail:
+      'Dreft The Ultimate Care (Original en Morning Freshness, 32 wasbeurten) aan 1+1. Coral Optimal White, Black Velvet en Optimal Color (26 wasbeurten) aan 1+2.',
+    image: '/images/promos/dreft-coral-wasmiddel.jpg',
+    alt: 'Promotie-affiche met flessen Dreft aan 1+1 en flessen Coral aan 1+2',
+  },
+  {
+    id: 'sun',
+    deal: '1+1',
+    title: 'Sun vaatwastabletten',
+    subtitle: 'Combineer en profiteer',
+    detail:
+      'Sun Ultra Power en Ultra Power Plus vaatwascapsules in verpakkingen van 18 of 38 stuks. De formaten en varianten mag je vrij combineren.',
+    image: '/images/promos/sun-vaatwastabletten.jpg',
+    alt: 'Promotie-affiche met zakken Sun vaatwastabletten van 18 en 38 capsules aan 1+1',
+  },
+  {
+    id: 'bref',
+    deal: '2+3',
+    title: 'Bref WC Power Activ',
+    subtitle: 'Voor een frisse toiletpot',
+    detail:
+      'Bref WC Power Activ toiletblokken, los en in duo pack, in de geuren Pin, Lavendel, Ocean en Munt-Eucalyptus.',
+    image: '/images/promos/bref-wc-power-activ.jpg',
+    alt: 'Promotie-affiche met Bref WC Power Activ toiletblokken in vier geuren aan 2+3',
+  },
+];
+
+// Build-time check: loopt er op dit moment een actie? Gebruikt de Brusselse datum,
+// want de site wordt vanuit een server in een andere tijdzone gebouwd.
+export function promosActive(): boolean {
+  if (PROMOS.length === 0) return false;
+  if (!PROMO_VALID_UNTIL) return true;
+  const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Brussels' });
+  return PROMO_VALID_UNTIL >= today;
+}

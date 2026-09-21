@@ -1,0 +1,98 @@
+---
+import { PROMOS, PROMO_VALID_UNTIL, LINKS } from '../consts';
+
+// De sectie wordt enkel gerenderd als er een actie loopt; index.astro doet die check.
+const validUntilLabel = PROMO_VALID_UNTIL
+  ? new Date(`${PROMO_VALID_UNTIL}T12:00:00`).toLocaleDateString('nl-BE', {
+      day: 'numeric',
+      month: 'long',
+    })
+  : null;
+---
+
+<section
+  id="promoties"
+  data-valid-until={PROMO_VALID_UNTIL ?? ""}
+  class="relative overflow-hidden bg-brand-600 py-14 text-white"
+>
+  <div
+    class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/5"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-white/5"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-5xl px-4 sm:px-6">
+    <h2 class="text-2xl font-extrabold tracking-tight sm:text-3xl">Tijdelijke promoties</h2>
+    <p class="mt-2 max-w-2xl text-white/90">
+      Deze acties lopen op dit moment in Delhaize Heers{
+        validUntilLabel ? `, nog tot en met ${validUntilLabel}` : ''
+      }. Activeer het voordeel met je SuperPlus-kaart of in de Delhaize-app, zolang de voorraad strekt.
+    </p>
+
+    <ul class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        PROMOS.map((promo) => (
+          <li class="flex flex-col rounded-3xl bg-white p-3 text-slate-900 shadow-lg ring-1 ring-black/5">
+            <div class="overflow-hidden rounded-2xl">
+              <img
+                src={promo.image}
+                alt={promo.alt}
+                width="1080"
+                height="1350"
+                loading="lazy"
+                decoding="async"
+                class="aspect-4/5 w-full object-cover"
+              />
+            </div>
+            <div class="flex flex-1 flex-col px-2 pb-2 pt-4">
+              <div class="flex items-center gap-2">
+                <p class="rounded-full bg-brand-600 px-2.5 py-1 text-sm font-extrabold leading-none text-white">
+                  {promo.deal}
+                </p>
+                <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">
+                  {promo.subtitle}
+                </p>
+              </div>
+              <h3 class="mt-2 text-lg font-bold">{promo.title}</h3>
+              <p class="mt-2 flex-1 text-sm text-slate-600">{promo.detail}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <a
+        href="#folder"
+        class="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-brand-600 hover:bg-brand-50"
+      >
+        Bekijk alle folderacties
+      </a>
+      <a
+        href={LINKS.facebook}
+        target="_blank"
+        rel="noopener"
+        class="rounded-full border border-white/60 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10"
+      >
+        Volg onze acties op Facebook
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // De site is statisch: zonder nieuwe build zou een verlopen actie blijven staan.
+  // Deze check verbergt de sectie ook bij de bezoeker zodra de einddatum voorbij is.
+  const section = document.getElementById('promoties');
+  const validUntil = section?.dataset.validUntil;
+  // sv-SE geeft de lokale datum als YYYY-MM-DD, dus vergelijkbaar als tekst.
+  if (section && validUntil && new Date().toLocaleDateString('sv-SE') > validUntil) {
+    section.remove();
+    document.querySelectorAll('a[href="#promoties"]').forEach((link) => link.remove());
+  }
+</script>

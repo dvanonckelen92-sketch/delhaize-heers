@@ -1,6 +1,16 @@
 ---
 import '../styles/global.css';
-import { SITE, STORE, OPENING_HOURS, SERVICES, LINKS, COMPANY } from '../consts';
+import {
+  SITE,
+  STORE,
+  OPENING_HOURS,
+  SERVICES,
+  LINKS,
+  COMPANY,
+  PROMOS,
+  PROMO_VALID_UNTIL,
+  promosActive,
+} from '../consts';
 
 interface Props {
   title?: string;
@@ -76,6 +86,20 @@ const jsonLd = {
           itemOffered: { '@type': 'Service', name: service },
         })),
       },
+      // Lopende acties als Offer-nodes, zodat antwoordmachines ze kunnen citeren.
+      // Geen prijsvelden: dit zijn hoeveelheidsvoordelen (1+1, 2+3), geen vaste bedragen.
+      ...(promosActive()
+        ? {
+            makesOffer: PROMOS.map((promo) => ({
+              '@type': 'Offer',
+              name: `${promo.title}: ${promo.deal}`,
+              description: promo.detail,
+              availability: 'https://schema.org/LimitedAvailability',
+              ...(PROMO_VALID_UNTIL ? { availabilityEnds: PROMO_VALID_UNTIL } : {}),
+              itemOffered: { '@type': 'Product', name: promo.title },
+            })),
+          }
+        : {}),
     },
     {
       '@type': 'WebSite',
