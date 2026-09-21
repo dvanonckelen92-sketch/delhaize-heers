@@ -114,7 +114,8 @@ export type Promo = {
 
 // Laatste dag dat de acties gelden (YYYY-MM-DD), of null als de einddatum niet
 // bekend is. Bij een datum verbergt de sectie zichzelf automatisch na die dag.
-export const PROMO_VALID_UNTIL: string | null = null;
+// Deze reeks loopt per week, dus de zondag voor de nieuwe actieweek.
+export const PROMO_VALID_UNTIL: string | null = '2026-09-27';
 
 export const PROMOS: Promo[] = [
   {
