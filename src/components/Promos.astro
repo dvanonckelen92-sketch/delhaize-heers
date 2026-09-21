@@ -1,5 +1,19 @@
 ---
+import { Picture } from 'astro:assets';
 import { PROMOS, PROMO_VALID_UNTIL, LINKS } from '../consts';
+
+// Glob i.p.v. drie losse imports: zo blijft een nieuwe promo een wijziging in
+// consts.ts alleen, zolang de afbeelding in deze map staat.
+const promoImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/images/promos/*.{jpg,jpeg,png,webp}',
+  { eager: true },
+);
+
+const imageFor = (file: string) => {
+  const entry = promoImages[`../assets/images/promos/${file}`];
+  if (!entry) throw new Error(`Promo-afbeelding niet gevonden: src/assets/images/promos/${file}`);
+  return entry.default;
+};
 
 // De sectie wordt enkel gerenderd als er een actie loopt; index.astro doet die check.
 const validUntilLabel = PROMO_VALID_UNTIL
@@ -39,11 +53,13 @@ const validUntilLabel = PROMO_VALID_UNTIL
         PROMOS.map((promo) => (
           <li class="flex flex-col rounded-3xl bg-white p-3 text-slate-900 shadow-lg ring-1 ring-black/5">
             <div class="overflow-hidden rounded-2xl">
-              <img
-                src={promo.image}
+              <Picture
+                src={imageFor(promo.image)}
+                formats={['avif', 'webp']}
+                fallbackFormat="jpg"
                 alt={promo.alt}
-                width="1080"
-                height="1350"
+                width={540}
+                height={675}
                 loading="lazy"
                 decoding="async"
                 class="aspect-4/5 w-full object-cover"

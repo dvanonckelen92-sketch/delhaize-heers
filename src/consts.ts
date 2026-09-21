@@ -107,6 +107,7 @@ export type Promo = {
   title: string;
   subtitle: string;
   detail: string;
+  // Bestandsnaam binnen src/assets/images/promos/, Promos.astro optimaliseert hem.
   image: string;
   alt: string;
 };
@@ -123,7 +124,7 @@ export const PROMOS: Promo[] = [
     subtitle: 'Voordelig huishouden',
     detail:
       'Dreft The Ultimate Care (Original en Morning Freshness, 32 wasbeurten) aan 1+1. Coral Optimal White, Black Velvet en Optimal Color (26 wasbeurten) aan 1+2.',
-    image: '/images/promos/dreft-coral-wasmiddel.jpg',
+    image: 'dreft-coral-wasmiddel.jpg',
     alt: 'Promotie-affiche met flessen Dreft aan 1+1 en flessen Coral aan 1+2',
   },
   {
@@ -133,7 +134,7 @@ export const PROMOS: Promo[] = [
     subtitle: 'Combineer en profiteer',
     detail:
       'Sun Ultra Power en Ultra Power Plus vaatwascapsules in verpakkingen van 18 of 38 stuks. De formaten en varianten mag je vrij combineren.',
-    image: '/images/promos/sun-vaatwastabletten.jpg',
+    image: 'sun-vaatwastabletten.jpg',
     alt: 'Promotie-affiche met zakken Sun vaatwastabletten van 18 en 38 capsules aan 1+1',
   },
   {
@@ -143,7 +144,7 @@ export const PROMOS: Promo[] = [
     subtitle: 'Voor een frisse toiletpot',
     detail:
       'Bref WC Power Activ toiletblokken, los en in duo pack, in de geuren Pin, Lavendel, Ocean en Munt-Eucalyptus.',
-    image: '/images/promos/bref-wc-power-activ.jpg',
+    image: 'bref-wc-power-activ.jpg',
     alt: 'Promotie-affiche met Bref WC Power Activ toiletblokken in vier geuren aan 2+3',
   },
 ];
