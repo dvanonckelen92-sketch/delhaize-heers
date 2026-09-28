@@ -115,40 +115,9 @@ export type Promo = {
 // Laatste dag dat de acties gelden (YYYY-MM-DD), of null als de einddatum niet
 // bekend is. Bij een datum verbergt de sectie zichzelf automatisch na die dag.
 // Deze reeks loopt per week, dus de zondag voor de nieuwe actieweek.
-export const PROMO_VALID_UNTIL: string | null = '2026-09-27';
+export const PROMO_VALID_UNTIL: string | null = null;
 
-export const PROMOS: Promo[] = [
-  {
-    id: 'dreft-coral',
-    deal: '1+1 & 1+2',
-    title: 'Dreft en Coral wasmiddel',
-    subtitle: 'Voordelig huishouden',
-    detail:
-      'Dreft The Ultimate Care (Original en Morning Freshness, 32 wasbeurten) aan 1+1. Coral Optimal White, Black Velvet en Optimal Color (26 wasbeurten) aan 1+2.',
-    image: 'dreft-coral-wasmiddel.jpg',
-    alt: 'Promotie-affiche met flessen Dreft aan 1+1 en flessen Coral aan 1+2',
-  },
-  {
-    id: 'sun',
-    deal: '1+1',
-    title: 'Sun vaatwastabletten',
-    subtitle: 'Combineer en profiteer',
-    detail:
-      'Sun Ultra Power en Ultra Power Plus vaatwascapsules in verpakkingen van 18 of 38 stuks. De formaten en varianten mag je vrij combineren.',
-    image: 'sun-vaatwastabletten.jpg',
-    alt: 'Promotie-affiche met zakken Sun vaatwastabletten van 18 en 38 capsules aan 1+1',
-  },
-  {
-    id: 'bref',
-    deal: '2+3',
-    title: 'Bref WC Power Activ',
-    subtitle: 'Voor een frisse toiletpot',
-    detail:
-      'Bref WC Power Activ toiletblokken, los en in duo pack, in de geuren Pin, Lavendel, Ocean en Munt-Eucalyptus.',
-    image: 'bref-wc-power-activ.jpg',
-    alt: 'Promotie-affiche met Bref WC Power Activ toiletblokken in vier geuren aan 2+3',
-  },
-];
+export const PROMOS: Promo[] = [];
 
 // Build-time check: loopt er op dit moment een actie? Gebruikt de Brusselse datum,
 // want de site wordt vanuit een server in een andere tijdzone gebouwd.
